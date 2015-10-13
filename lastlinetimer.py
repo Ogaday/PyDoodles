@@ -10,7 +10,7 @@ import subprocess
 import timeit
 
 
-N = 10000000    # length of csv file.
+N = 100000    # length of csv file.
 
 # Set up example file
 def numbergen(n=N):
@@ -41,22 +41,26 @@ def get_last_line_iter(file):
             pass
         return line.strip()
 
-    
-OS_time = timeit.timeit(get_last_line_OS("temp.csv"))
-seek_time = timeit.timeit(get_last_line_seek("temp.csv"))
-iter_time = timeit.timeit(get_last_line_iter("temp.csv"))
-OS_last, seek_last, iter_last = get_last_line_OS("temp.csv"), get_last_line_seek("temp.csv"), get_last_line_iter("temp.csv")
+if __name__ == "__main__":
+    print("Starting timer OS...")
+    OS_time = timeit.timeit('get_last_line_OS("temp.csv")', globals=globals(), number=1000)
+    print("Starting timer seek...")
+    seek_time = timeit.timeit('get_last_line_seek("temp.csv")', globals=globals(), number=1000)
+    print("Starting timer iter...")
+    iter_time = timeit.timeit('get_last_line_iter("temp.csv")', globals=globals(), number=1000)
 
-# Cleanup/Teardown
-print(OS_last, seek_last, iter_last)
-assert(OS_last == seek_last == iter_last)
-os.remove("temp.csv")
+    #OS_last, seek_last, iter_last = get_last_line_OS("temp.csv"), get_last_line_seek("temp.csv"), get_last_line_iter("temp.csv")
 
-# Produce Results
-print("OS method took:       ", OS_time)
-print("Seek method took:     ", seek_time)
-print("Iteration method took:", iter_time)
+    # Cleanup/Teardown
+    print(OS_last, seek_last, iter_last)
+    assert(OS_last == seek_last == iter_last)
+    os.remove("temp.csv")
 
-# Notes:
-# Could definitely use the set up method in timeit to create a new csv file each time.
-# Would like to put in some sort of assert to make sure that these line reading things are getting the same values.
+    # Produce Results
+    print("OS method took:       ", OS_time)
+    print("Seek method took:     ", seek_time)
+    print("Iteration method took:", iter_time)
+
+    # Notes:
+    # Could definitely use the set up method in timeit to create a new csv file each time.
+    # Would like to put in some sort of assert to make sure that these line reading things are getting the same values.

@@ -35,7 +35,7 @@ def f1(n):
  except:p=len(m)
  #if'.'in n:p=m.index('.');m.pop(p)
  #else:p=len(m)
- return('0','+'.join([str(eval(d)*10**(p-i-1))for i,d in enumerate(m)if d!='0']))[eval(n)!=0] 
+ return('0','+'.join([str(eval(d)*10**(p-i-1))for i,d in enumerate(m)if d!='0']))[eval(n)!=0]
 
 #;m.pop(p)
 #[:p]+m[p:]

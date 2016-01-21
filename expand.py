@@ -81,14 +81,14 @@ if __name__=="__main__" and sys.version_info[0]<3:
 """
 
 """
-TanMaths, now 165 bytes
+# TanMath's, now 165 bytes
 i=input().split(".")
 I=i[0]
-I,=i
 e=enumerate
 o=[k+len(I[j+1:])*"0"for j,k in e(I)if k!="0"]
 #o=[k+(len(I)-j-1)*"0"for j,k in e(I)if k!="0"]
 try:o+=["."+l*"0"+m for l,m in e(i[1])if m!="0"]
 except:0
 print"+".join(o)or"0"
+#print"+".join(o or"0")
 """

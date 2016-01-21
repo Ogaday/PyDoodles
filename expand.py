@@ -36,6 +36,24 @@ def f1(n):
  #if'.'in n:p=m.index('.');m.pop(p)
  #else:p=len(m)
  return('0','+'.join([str(eval(d)*10**(p-i-1))for i,d in enumerate(m)if d!='0']))[eval(n)!=0]
+ 
+def f(n):
+ *m,=n;o='0'
+ try:p=m.index('.');m.pop(p)
+ except:p=len(m)
+ return(o,'+'.join([['.'+o*(-1*(p-i))+d,d+o*(p-i-1)][p>i]for i,d in enumerate(m)if d!=o]))[eval(n)>0]
+
+# 154 bytes!
+def f(n):
+ *m,=n;o='0'
+ try:p=m.index('.');m.pop(p)
+ except:p=len(m)
+ return'+'.join([['.'+o*(i-p)+d,d+o*(p-i-1)][p>i]for i,d in enumerate(m)if d!=o])or o
+#*m,=input();o='0'
+#print(type(m))
+#try:p=m.index('.');m.pop(p)
+#except:p=len(m)
+#print((o,'+'.join([['.'+o*(-1*(p-i))+d,d+o*(p-i-1)][p>i]for i,d in enumerate(m)if d!=o]))[eval(''.join(m))>0])
 
 #;m.pop(p)
 #[:p]+m[p:]
@@ -60,4 +78,17 @@ if __name__=="__main__" and sys.version_info[0]<3:
     try:J=i[1];o+=["."+l*"0"+m for l,m in e(J) if m!="0"]
     except:''
     print("+".join(o if o else "0"))
+"""
+
+"""
+TanMaths, now 165 bytes
+i=input().split(".")
+I=i[0]
+I,=i
+e=enumerate
+o=[k+len(I[j+1:])*"0"for j,k in e(I)if k!="0"]
+#o=[k+(len(I)-j-1)*"0"for j,k in e(I)if k!="0"]
+try:o+=["."+l*"0"+m for l,m in e(i[1])if m!="0"]
+except:0
+print"+".join(o)or"0"
 """

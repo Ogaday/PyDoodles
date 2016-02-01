@@ -80,6 +80,9 @@ if __name__=="__main__" and sys.version_info[0]<3:
     print("+".join(o if o else "0"))
 """
 
+#someone else's, fixed by me.
+#def f(x):x+='.';i=x.find('.');z=list(x);del z[i];return"+".join([str(int(o)*10**(i-j-1))for j,o in enumerate(z)if"0"<o])or'0'    #125 bytes
+
 """
 # TanMath's, now 165 bytes
 i=input().split(".")
